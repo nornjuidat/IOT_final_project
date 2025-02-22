@@ -5,8 +5,8 @@
 #define LIGHT_SENSOR_PIN A0
 #define TEMP_SENSOR_PIN A1
 #define BUTTON_PINS {D2, D3, D4, D5}
-#define DISTANCE_SENSOR_TRIGGER D6
-#define DISTANCE_SENSOR_ECHO D7
+#define JOYSTICK_X A2
+#define JOYSTICK_Y A3
 
 WebSocketsClient webSocket;
 int puzzleStep = 0;
