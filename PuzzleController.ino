@@ -13,3 +13,7 @@ int puzzleStep = 0;
 const int correctSequence[4] = {0, 1, 2, 3};
 int userSequence[4];
 int inputIndex = 0;
+void sendPuzzleSolved(int step) {
+    String msg = String(step);
+    webSocket.sendTXT(msg);
+}
