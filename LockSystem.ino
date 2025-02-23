@@ -15,3 +15,9 @@ void openLock() {
     delay(5000);
     digitalWrite(LOCK_PIN, LOW);
 }
+void updateDisplay() {
+    int displayPins[] = DISPLAY_PINS;
+    for (int i = 0; i < currentDigit; i++) {
+        digitalWrite(displayPins[i], HIGH);
+    }
+}
