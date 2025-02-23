@@ -59,7 +59,29 @@ void handleLEDSequencePuzzle() {
         }
     }
 }
+void handleJoystickPuzzle() {
+    int xValue = analogRead(JOYSTICK_X);
+    int yValue = analogRead(JOYSTICK_Y);
+    
+    if ((xValue < 200 && yValue < 200) || (xValue > 800 && yValue < 200) || 
+        (xValue < 200 && yValue > 800) || (xValue > 800 && yValue > 800)) {
+        delay(2000);
+        sendPuzzleSolved(3);
+    }
+}
 
+void setup() {
+    setupWiFi();
+    webSocket.begin("<LOCK_CONTROLLER_IP>", 81, "/");
+}
+
+void loop() {
+    handleLightPuzzle();
+    handleTemperaturePuzzle();
+    handleLEDSequencePuzzle();
+    handleJoystickPuzzle();
+    webSocket.loop();
+{
 
 
 
