@@ -25,3 +25,14 @@ void handleLightPuzzle() {
         sendPuzzleSolved(0);
     }
 }
+void handleTemperaturePuzzle() {
+    int tempValue = analogRead(TEMP_SENSOR_PIN);
+    if (tempValue < 500) {  
+        delay(2000);
+        sendPuzzleSolved(1);
+    }
+}
+
+
+
+
