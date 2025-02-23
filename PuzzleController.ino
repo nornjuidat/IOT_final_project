@@ -17,3 +17,11 @@ void sendPuzzleSolved(int step) {
     String msg = String(step);
     webSocket.sendTXT(msg);
 }
+
+void handleLightPuzzle() {
+    int lightValue = analogRead(LIGHT_SENSOR_PIN);
+    if (lightValue < 800) { 
+        delay(2000);
+        sendPuzzleSolved(0);
+    }
+}
