@@ -32,6 +32,19 @@ void handleTemperaturePuzzle() {
         sendPuzzleSolved(1);
     }
 }
+void handleLEDSequencePuzzle() {
+    int buttonPins[] = BUTTON_PINS;
+    for (int i = 0; i < 4; i++) {
+        pinMode(buttonPins[i], INPUT_PULLUP);
+    }
+
+    int buttonPressed = -1;
+    for (int i = 0; i < 4; i++) {
+        if (digitalRead(buttonPins[i]) == LOW) {
+            buttonPressed = i;
+            break;
+        }
+    }
 
 
 
