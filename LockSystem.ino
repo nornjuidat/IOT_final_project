@@ -21,3 +21,14 @@ void updateDisplay() {
         digitalWrite(displayPins[i], HIGH);
     }
 }
+void handleCodeInput() {
+    if (server.hasArg("code")) {
+        enteredCode = server.arg("code");
+        if (enteredCode == accessCode) {
+            openLock();
+            server.send(200, "text/plain", "Door Unlocked");
+        } else {
+            server.send(403, "text/plain", "Incorrect Code");
+        }
+    }
+}
