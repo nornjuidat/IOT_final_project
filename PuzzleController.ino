@@ -45,6 +45,20 @@ void handleLEDSequencePuzzle() {
             break;
         }
     }
+       if (buttonPressed != -1 && inputIndex < 4) {
+        userSequence[inputIndex++] = buttonPressed;
+        if (inputIndex == 4) {
+            bool success = true;
+            for (int i = 0; i < 4; i++) {
+                if (userSequence[i] != correctSequence[i]) {
+                    success = false;
+                    break;
+                }
+            }
+            if (success) sendPuzzleSolved(2);
+        }
+    }
+}
 
 
 
