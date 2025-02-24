@@ -46,3 +46,7 @@ void setup() {
     server.on("/unlock", handleCodeInput);
     server.begin();
 }
+void loop() {
+    server.handleClient();
+    updateDisplay();
+}
