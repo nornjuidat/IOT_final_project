@@ -26,16 +26,16 @@ void handleRoot() {
   );
 }
 
-void setup() {
-  pinMode(LOCK_PIN, OUTPUT);
-  digitalWrite(LOCK_PIN, HIGH); // נעילה ראשונית
-  setupWiFi();
-  server.on("/", handleRoot);
-  server.on("/unlock", handleUnlock);
-  server.begin();
-  webSocket.begin();
-  webSocket.onEvent(webSocketEvent);
-  display.begin(0x70);
-  updateDisplay();
+void handleUnlock() {
+  if (server.hasArg("code")) {
+    enteredCode = server.arg("code");
+    if (enteredCode == correctCode) {
+      digitalWrite(LOCK_PIN, LOW); // פתיחת הדלת
+      server.send(200, "text/plain", "Unlocked!");
+    } else {
+      server.send(200, "text/plain", "Wrong code!");
+    }
+  }
 }
+
 
