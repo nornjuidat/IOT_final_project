@@ -55,3 +55,17 @@ void updateDisplay() {
   display.writeDisplay();
 }
 
+void setup() {
+  pinMode(LOCK_PIN, OUTPUT);
+  digitalWrite(LOCK_PIN, HIGH); // נעילה ראשונית
+  setupWiFi(); // פונקציה מוגדרת ב-WiFiConfig.h
+  server.on("/", handleRoot);
+  server.on("/unlock", handleUnlock);
+  server.begin();
+  webSocket.begin();
+  webSocket.onEvent(webSocketEvent);
+  display.begin(0x70);
+  updateDisplay();
+}
+ 
+
