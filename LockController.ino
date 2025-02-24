@@ -25,3 +25,15 @@ void handleRoot() {
     "</script></body></html>"
   );
 }
+
+void handleUnlock() {
+  if (server.hasArg("code")) {
+    enteredCode = server.arg("code");
+    if (enteredCode == correctCode) {
+      digitalWrite(LOCK_PIN, LOW); // פתיחת הדלת
+      server.send(200, "text/plain", "Unlocked!");
+    } else {
+      server.send(200, "text/plain", "Wrong code!");
+    }
+  }
+}
