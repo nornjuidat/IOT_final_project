@@ -48,3 +48,10 @@ void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length
   }
 }
 
+void updateDisplay() {
+  for (int i = 0; i < 4; i++) {
+    display.writeDigitNum(i, revealedDigits[i] == '_' ? '-' : revealedDigits[i] - '0');
+  }
+  display.writeDisplay();
+}
+
