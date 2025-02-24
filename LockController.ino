@@ -15,3 +15,13 @@ Adafruit_7segment display = Adafruit_7segment();
 String correctCode = "1234"; 
 String enteredCode = "";
 String revealedDigits = "____";
+
+void handleRoot() {
+  server.send(200, "text/html", 
+    "<!DOCTYPE html><html><body><h2>Enter Code:</h2>"
+    "<input type='text' id='code'><button onclick='sendCode()'>Unlock</button>"
+    "<script>function sendCode(){var x=new XMLHttpRequest();"
+    "x.open('GET','/unlock?code='+document.getElementById('code').value,true);x.send();}"
+    "</script></body></html>"
+  );
+}
