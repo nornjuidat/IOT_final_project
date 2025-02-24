@@ -32,3 +32,17 @@ void handleCodeInput() {
         }
     }
 }
+void setup() {
+    pinMode(LOCK_PIN, OUTPUT);
+    digitalWrite(LOCK_PIN, LOW);
+
+    int displayPins[] = DISPLAY_PINS;
+    for (int i = 0; i < 4; i++) {
+        pinMode(displayPins[i], OUTPUT);
+        digitalWrite(displayPins[i], LOW);
+    }
+
+    connectToWiFi();
+    server.on("/unlock", handleCodeInput);
+    server.begin();
+}
