@@ -6,3 +6,12 @@
 #include "Adafruit_GFX.h"
 #include "Adafruit_LEDBackpack.h"
 #include "WiFiConfig.h"
+
+#define LOCK_PIN D1  // פין לנעילה
+ESP8266WebServer server(80);
+WebSocketsServer webSocket(81);
+Adafruit_7segment display = Adafruit_7segment();
+
+String correctCode = "1234"; // הקוד לפתיחת הדלת
+String enteredCode = "";
+String revealedDigits = "____";
