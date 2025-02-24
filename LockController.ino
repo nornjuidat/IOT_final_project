@@ -37,3 +37,14 @@ void handleUnlock() {
     }
   }
 }
+
+void webSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length) {
+  if (type == WStype_TEXT) {
+    String msg = (char*)payload;
+    if (msg.length() == 1) {
+      revealedDigits[msg.toInt()] = correctCode[msg.toInt()];
+      updateDisplay();
+    }
+  }
+}
+
