@@ -67,5 +67,10 @@ void setup() {
   display.begin(0x70);
   updateDisplay();
 }
- 
+
+void loop() {
+  server.handleClient();
+  webSocket.loop();
+}
+
 
