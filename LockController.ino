@@ -25,3 +25,17 @@ void handleRoot() {
     "</script></body></html>"
   );
 }
+
+void setup() {
+  pinMode(LOCK_PIN, OUTPUT);
+  digitalWrite(LOCK_PIN, HIGH); // נעילה ראשונית
+  setupWiFi();
+  server.on("/", handleRoot);
+  server.on("/unlock", handleUnlock);
+  server.begin();
+  webSocket.begin();
+  webSocket.onEvent(webSocketEvent);
+  display.begin(0x70);
+  updateDisplay();
+}
+
